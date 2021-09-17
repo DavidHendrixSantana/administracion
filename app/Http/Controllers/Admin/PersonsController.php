@@ -19,6 +19,9 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
+use App\Models\Teacher;
+use App\Models\Schedule;
+
 
 class PersonsController extends Controller
 {
@@ -37,11 +40,14 @@ class PersonsController extends Controller
             $request,
 
             // set columns to query
-            ['id', 'tutor', 'edad', 'telefono', 'nivel', 'teacher_id', 'schedule_id'],
+            ['id', 'nombre','tutor', 'edad', 'telefono', 'nivel', 'teacher_id', 'schedule_id'],
 
             // set columns to searchIn
-            ['id', 'tutor', 'edad', 'telefono', 'nivel']
+            ['id', 'nombre','tutor', 'edad', 'telefono', 'nivel'],
+
+      
         );
+
 
         if ($request->ajax()) {
             if ($request->has('bulk')) {
@@ -52,7 +58,8 @@ class PersonsController extends Controller
             return ['data' => $data];
         }
 
-        return view('admin.person.index', ['data' => $data]);
+        return view('admin.person.index', ['data' => $data,
+    'teachers' =>Teacher::all()]);
     }
 
     /**
@@ -65,7 +72,10 @@ class PersonsController extends Controller
     {
         $this->authorize('admin.person.create');
 
-        return view('admin.person.create');
+        return view('admin.person.create',[
+            'teachers' => Teacher::all(),
+            'schedules' => Schedule::all(),
+        ]);
     }
 
     /**
@@ -78,6 +88,9 @@ class PersonsController extends Controller
     {
         // Sanitize input
         $sanitized = $request->getSanitized();
+        $sanitized['teacher_id'] = $request->getTeacherId();
+        $sanitized['schedule_id'] = $request->getScheduleid();
+
 
         // Store the Person
         $person = Person::create($sanitized);
@@ -184,5 +197,21 @@ class PersonsController extends Controller
         });
 
         return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
+    }
+
+ /**
+     * Remove the specified resources from storage.
+     *
+   
+     * @param Person
+   
+     */
+    public function GenerarTarjeta(Person $person){
+      dd($person->teacher());
+         $pdf = \PDF::loadView('pdf.credencial',compact('person'));
+         return $pdf->download('credencial.pdf');
+
+
+        
     }
 }

@@ -26,14 +26,29 @@ class StorePerson extends FormRequest
     public function rules(): array
     {
         return [
+
+            'nombre' => ['required', 'string'],
             'tutor' => ['required', 'string'],
             'edad' => ['required', 'string'],
             'telefono' => ['required', 'string'],
             'nivel' => ['required', 'string'],
-            'teacher_id' => ['nullable', 'integer'],
-            'schedule_id' => ['nullable', 'integer'],
+            'teacher' => ['required',],
+            'schedule' => ['required', ],
             
         ];
+    }
+
+    public function getTeacherId(){
+        if ($this->has('teacher')){
+            return $this->get('teacher')['id'];
+        }
+        return null;
+    }
+    public function getScheduleId(){
+        if ($this->has('schedule')){
+            return $this->get('schedule')['id'];
+        }
+        return null;
     }
 
     /**

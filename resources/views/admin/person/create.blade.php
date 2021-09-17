@@ -9,6 +9,8 @@
                 <div class="card">
         
         <person-form
+            :teachers="{{$teachers->toJson()}}"
+            :schedules="{{$schedules->toJson()}}"
             :action="'{{ url('admin/people') }}'"
             v-cloak
             inline-template>

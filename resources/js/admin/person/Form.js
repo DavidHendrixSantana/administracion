@@ -5,15 +5,23 @@ Vue.component('person-form', {
     data: function() {
         return {
             form: {
+                nombre: '',
                 tutor:  '' ,
                 edad:  '' ,
                 telefono:  '' ,
                 nivel:  '' ,
-                teacher_id:  '' ,
-                schedule_id:  '' ,
+                teacher: '',
+                schedule:  '' ,
                 
             }
         }
-    }
+        
+    },
+    props:[
+        'teachers',
+        'schedules'
+    ],
+   
+    
 
 });

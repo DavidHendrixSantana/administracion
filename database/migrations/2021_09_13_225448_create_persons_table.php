@@ -15,14 +15,13 @@ class CreatePersonsTable extends Migration
     {
         Schema::create('persons', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre');
             $table->string('tutor');
             $table->string('edad');
             $table->string('telefono');
             $table->string('nivel');
-            $table->integer('teacher_id')->nullable();
-            $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('cascade');
-            $table->integer('schedule_id')->nullable();
-            $table->foreign('schedule_id')->references('id')->on('schedules')->onDelete('cascade');
+            $table->integer('teacher_id');
+            $table->integer('schedule_id');
             $table->timestamps();
         });
     }

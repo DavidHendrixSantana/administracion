@@ -28,4 +28,9 @@ class Teacher extends Model
     {
         return url('/admin/teachers/'.$this->getKey());
     }
+
+    public function persons() {
+        return $this->hasMany(Person::class);
+    }
+
 }

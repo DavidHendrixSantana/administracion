@@ -9,6 +9,7 @@ class Person extends Model
     protected $table = 'persons';
 
     protected $fillable = [
+        'nombre',
         'tutor',
         'edad',
         'telefono',
@@ -33,4 +34,15 @@ class Person extends Model
     {
         return url('/admin/people/'.$this->getKey());
     }
+
+    public function teacher()
+    {
+        return $this->belongsTo(Teacher::class, 'teacher_id', 'id');
+    }
+
+    public function schedule()
+    {
+        return $this->belongsTo(Schedule::class);
+    }
+
 }

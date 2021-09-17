@@ -27,4 +27,8 @@ class Schedule extends Model
     {
         return url('/admin/schedules/'.$this->getKey());
     }
+
+    public function persons() {
+        return $this->hasMany(Person::class);
+    }
 }

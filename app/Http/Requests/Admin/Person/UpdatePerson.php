@@ -26,6 +26,7 @@ class UpdatePerson extends FormRequest
     public function rules(): array
     {
         return [
+            'nombre' => ['required', 'string'],
             'tutor' => ['sometimes', 'string'],
             'edad' => ['sometimes', 'string'],
             'telefono' => ['sometimes', 'string'],

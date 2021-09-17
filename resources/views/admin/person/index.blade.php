@@ -49,13 +49,14 @@
                                             </label>
                                         </th>
 
-                                        <th is='sortable' :column="'id'">{{ trans('admin.person.columns.id') }}</th>
-                                        <th is='sortable' :column="'tutor'">{{ trans('admin.person.columns.tutor') }}</th>
-                                        <th is='sortable' :column="'edad'">{{ trans('admin.person.columns.edad') }}</th>
-                                        <th is='sortable' :column="'telefono'">{{ trans('admin.person.columns.telefono') }}</th>
-                                        <th is='sortable' :column="'nivel'">{{ trans('admin.person.columns.nivel') }}</th>
-                                        <th is='sortable' :column="'teacher_id'">{{ trans('admin.person.columns.teacher_id') }}</th>
-                                        <th is='sortable' :column="'schedule_id'">{{ trans('admin.person.columns.schedule_id') }}</th>
+                                        <th is='sortable' :column="'id'">No.</th>
+                                        <th is='sortable' :column="'nombre'">Nombre</th>
+                                        <th is='sortable' :column="'tutor'">Tutor</th>
+                                        <th is='sortable' :column="'edad'">Edad</th>
+                                        <th is='sortable' :column="'telefono'">Telefono</th>
+                                        <th is='sortable' :column="'nivel'">Nivel</th>
+                                        <th is='sortable' :column="'teacher_id'">Maestro</th>
+                                        <th is='sortable' :column="'schedule_id'">Horario</th>
 
                                         <th></th>
                                     </tr>
@@ -80,6 +81,7 @@
                                         </td>
 
                                     <td>@{{ item.id }}</td>
+                                        <td>@{{ item.nombre }}</td>
                                         <td>@{{ item.tutor }}</td>
                                         <td>@{{ item.edad }}</td>
                                         <td>@{{ item.telefono }}</td>
@@ -91,6 +93,9 @@
                                             <div class="row no-gutters">
                                                 <div class="col-auto">
                                                     <a class="btn btn-sm btn-spinner btn-info" :href="item.resource_url + '/edit'" title="{{ trans('brackets/admin-ui::admin.btn.edit') }}" role="button"><i class="fa fa-edit"></i></a>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <a class="btn btn-sm btn-spinner btn-info" :href="item.resource_url + '/credencial'" title="{{ trans('brackets/admin-ui::admin.btn.edit') }}" role="button"><i class="fa fa-id-card-o"></i></a>
                                                 </div>
                                                 <form class="col" @submit.prevent="deleteItem(item.resource_url)">
                                                     <button type="submit" class="btn btn-sm btn-danger" title="{{ trans('brackets/admin-ui::admin.btn.delete') }}"><i class="fa fa-trash-o"></i></button>
