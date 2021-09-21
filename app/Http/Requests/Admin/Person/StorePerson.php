@@ -34,6 +34,8 @@ class StorePerson extends FormRequest
             'nivel' => ['required', 'string'],
             'teacher' => ['required',],
             'schedule' => ['required', ],
+            'imagen' => ['required', ],
+            
             
         ];
     }
@@ -50,6 +52,7 @@ class StorePerson extends FormRequest
         }
         return null;
     }
+
 
     /**
     * Modify input data

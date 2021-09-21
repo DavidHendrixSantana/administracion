@@ -36,6 +36,7 @@
     </div>
 </div>
 
+
 <div class="form-group row align-items-center"
      :class="{'has-danger': errors.has('teacher_id'), 'has-success': this.fields.teacher_id && this.fields.teacher_id.valid }">
      <label for="teacher_id" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">Profesor :</label>
@@ -58,9 +59,11 @@
     </div>
 </div>
 
+
+
 <div class="form-group row align-items-center"
      :class="{'has-danger': errors.has('schedule_id'), 'has-success': this.fields.schedule_id && this.fields.schedule_id.valid }">
-     <label for="schedule_id" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">Nivel de nado :</label>
+     <label for="schedule_id" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">Horario :</label>
 
     <div class="col-md-8 col-lg-9">
 
@@ -79,5 +82,15 @@
         </div>
     </div>
 </div>
+
+<div class="form-group row align-items-center" :class="{'has-danger': errors.has('imagen'), 'has-success': fields.imagen && fields.imagen.valid }">
+    <label for="imagen" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">Foto de la persona:</label>
+        <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
+        <input   type="file"   @change="uploadImage" v-validate="'required'" class="form-control" id="imagen" name="imagen" >
+        <div v-if="errors.has('imagen')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('imagen') }}</div>
+    </div>
+</div>
+
+
 
 

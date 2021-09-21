@@ -10,6 +10,7 @@ Vue.component('person-listing', {
     
             showSchedulesFilter: false,
             schedulesMultiselect: {},
+
     
             filters: {
                 teachers: [],
@@ -34,5 +35,8 @@ Vue.component('person-listing', {
             this.filters.schedules = newVal.map(function(object) { return object['key']; });
             this.filter('schedules', this.filters.schedules);
         }
-    }
+    },
+
+
+
 });

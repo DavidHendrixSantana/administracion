@@ -12,15 +12,29 @@ Vue.component('person-form', {
                 nivel:  '' ,
                 teacher: '',
                 schedule:  '' ,
+                imagen:  Object,
                 
             }
         }
         
     },
+
     props:[
         'teachers',
-        'schedules'
+        'schedules',
+       
+        
     ],
+
+    methods :{
+        uploadImage(e) {
+            const image = e.target.files[0];
+         
+            this.form.imagen =e.target.files[0];
+            console.log(this.form.imagen)
+
+        }
+    }
    
     
 

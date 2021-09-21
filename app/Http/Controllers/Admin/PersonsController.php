@@ -86,11 +86,29 @@ class PersonsController extends Controller
      */
     public function store(StorePerson $request)
     {
+
+        try{
+           
         // Sanitize input
+ 
+    $arrayImg = $request['imagen'];
+    $imagen = $arrayImg['file'];
+    $extension = $imagen->getClientOriginalExtension();
+  
+  
+
+
         $sanitized = $request->getSanitized();
+
+
+        //  save the picture
+
         $sanitized['teacher_id'] = $request->getTeacherId();
         $sanitized['schedule_id'] = $request->getScheduleid();
 
+       
+
+  
 
         // Store the Person
         $person = Person::create($sanitized);
@@ -100,6 +118,11 @@ class PersonsController extends Controller
         }
 
         return redirect('admin/people');
+
+        }catch(Throwable $e) {
+            return $e;
+        }
+      
     }
 
     /**

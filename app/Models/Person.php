@@ -16,6 +16,7 @@ class Person extends Model
         'nivel',
         'teacher_id',
         'schedule_id',
+        'imagen',
     
     ];
     
