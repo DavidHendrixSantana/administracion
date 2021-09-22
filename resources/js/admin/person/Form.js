@@ -12,9 +12,10 @@ Vue.component('person-form', {
                 nivel:  '' ,
                 teacher: '',
                 schedule:  '' ,
-                imagen:  Object,
+
                 
-            }
+            },
+            mediaCollections: ['gallery']
         }
         
     },
@@ -26,15 +27,6 @@ Vue.component('person-form', {
         
     ],
 
-    methods :{
-        uploadImage(e) {
-            const image = e.target.files[0];
-         
-            this.form.imagen =e.target.files[0];
-            console.log(this.form.imagen)
-
-        }
-    }
    
     
 

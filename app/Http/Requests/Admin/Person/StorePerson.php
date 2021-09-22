@@ -34,7 +34,7 @@ class StorePerson extends FormRequest
             'nivel' => ['required', 'string'],
             'teacher' => ['required',],
             'schedule' => ['required', ],
-            'imagen' => ['required', ],
+     
             
             
         ];

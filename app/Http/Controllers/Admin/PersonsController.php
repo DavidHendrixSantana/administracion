@@ -75,6 +75,7 @@ class PersonsController extends Controller
         return view('admin.person.create',[
             'teachers' => Teacher::all(),
             'schedules' => Schedule::all(),
+            'mode' => 'create',
         ]);
     }
 
@@ -91,13 +92,6 @@ class PersonsController extends Controller
            
         // Sanitize input
  
-    $arrayImg = $request['imagen'];
-    $imagen = $arrayImg['file'];
-    $extension = $imagen->getClientOriginalExtension();
-  
-  
-
-
         $sanitized = $request->getSanitized();
 
 
@@ -149,10 +143,14 @@ class PersonsController extends Controller
     public function edit(Person $person)
     {
         $this->authorize('admin.person.edit', $person);
-
+        $person->load('teacher');
+        $person->load('schedule');
 
         return view('admin.person.edit', [
             'person' => $person,
+            'teachers' => Teacher::all(),
+            'schedules' => Schedule::all(),
+            'mode' => 'edit',
         ]);
     }
 
@@ -237,4 +235,6 @@ class PersonsController extends Controller
 
         
     }
+
+
 }

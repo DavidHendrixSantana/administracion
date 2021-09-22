@@ -83,14 +83,18 @@
     </div>
 </div>
 
-<div class="form-group row align-items-center" :class="{'has-danger': errors.has('imagen'), 'has-success': fields.imagen && fields.imagen.valid }">
-    <label for="imagen" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">Foto de la persona:</label>
-        <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
-        <input   type="file"   @change="uploadImage" v-validate="'required'" class="form-control" id="imagen" name="imagen" >
-        <div v-if="errors.has('imagen')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('imagen') }}</div>
-    </div>
-</div>
 
+@if($mode === 'create')
 
+@include('brackets/admin-ui::admin.includes.media-uploader', [
+    'mediaCollection' => app(App\Models\Person::class)->getMediaCollection('gallery'),
+    'label' => 'Gallery'
+])
 
-
+@else
+@include('brackets/admin-ui::admin.includes.media-uploader', [
+   'mediaCollection' => $person->getMediaCollection('gallery'),
+   'media' => $person->getThumbs200ForCollection('gallery'),
+   'label' => 'Gallery of photos'
+])
+@endif

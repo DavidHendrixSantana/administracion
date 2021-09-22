@@ -9,6 +9,8 @@
 
             <person-form
                 :action="'{{ $person->resource_url }}'"
+                :teachers="{{$teachers->toJson()}}"
+            :schedules="{{$schedules->toJson()}}"
                 :data="{{ $person->toJson() }}"
                 v-cloak
                 inline-template>
