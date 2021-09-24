@@ -93,7 +93,7 @@
 
 @else
 @include('brackets/admin-ui::admin.includes.media-uploader', [
-   'mediaCollection' => $person->getMediaCollection('gallery'),
+   'mediaCollection' =>  app(App\Models\Person::class)->getMediaCollection('gallery'),
    'media' => $person->getThumbs200ForCollection('gallery'),
    'label' => 'Gallery of photos'
 ])

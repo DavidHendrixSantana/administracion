@@ -27,10 +27,7 @@ class Person extends Model implements HasMedia
 
     public function registerMediaConversions(Media $media = null): void
     {
-        $this->autoRegisterThumb200()
-        ->greyscale()
-            ->quality(80)
-            ->withResponsiveImages();
+        $this->autoRegisterThumb200();
     }
     
  

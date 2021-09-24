@@ -166,6 +166,10 @@ class PersonsController extends Controller
         // Sanitize input
         $sanitized = $request->getSanitized();
 
+        $sanitized['teacher_id'] = $request->getTeacherId();
+        $sanitized['schedule_id'] = $request->getScheduleid();
+
+
         // Update changed values Person
         $person->update($sanitized);
 
@@ -228,8 +232,9 @@ class PersonsController extends Controller
    
      */
     public function GenerarTarjeta(Person $person){
-      dd($person->teacher());
-         $pdf = \PDF::loadView('pdf.credencial',compact('person'));
+         $teachers =Teacher::all();
+         $schedules =Schedule::all();
+         $pdf = \PDF::loadView('pdf.credencial',compact('person', 'teachers', 'schedules'));
          return $pdf->download('credencial.pdf');
 
 
